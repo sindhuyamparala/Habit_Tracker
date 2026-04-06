@@ -10,16 +10,16 @@ Monthly Streak Analysis
 Clean & Responsive UI
 
 ## Tech Stack
-Frontend
-React.js
-Axios
-CSS
-Backend
-Spring Boot
-JWT Authentication
-REST APIs
-Database
-MySQL
+## Frontend
+- React.js
+- Axios
+- CSS
+## Backend
+- Spring Boot
+- JWT Authentication
+- REST APIs
+## Database
+- MySQL
 
 ## 📂 Project Structure
 Habit-Tracker/
