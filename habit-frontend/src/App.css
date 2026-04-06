@@ -1,0 +1,203 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f7fb;
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.calendar-container {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.habit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.habit-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.streak {
+  font-size: 13px;
+  color: #666;
+}
+
+.habit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.status {
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #4f46e5;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #4338ca;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.delete-btn {
+  background: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.logout-btn {
+  float: right;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.react-calendar {
+  color: black;
+}
+
+.react-calendar__tile {
+  color: black;
+}
+
+.react-calendar__month-view__days__day {
+  color: black;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: red;
+}
+
+.react-calendar {
+  border: none;
+}
+
+.react-calendar {
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.react-calendar__navigation__label {
+  letter-spacing: 1px;
+}
+
+.react-calendar__tile {
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.react-calendar__tile--active {
+  background: #4f46e5;
+  color: white;
+}
+
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+.react-calendar__tile:hover {
+  background: #e0e7ff;
+  border-radius: 8px;
+  transform: scale(1.05);
+}
+
+.react-calendar__tile:hover {
+  background: #e0e7ff;
+  border-radius: 8px;
+  transform: scale(1.05);
+}
+
+/* Month Text */
+.react-calendar__navigation__label {
+  color: #333;        /* change this */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Prev/Next Buttons */
+.react-calendar__navigation button {
+  color: #555;
+  font-size: 18px;
+}
+
+/* Hover effect */
+.react-calendar__navigation button:hover {
+  background-color: #f0f0f0;
+}
+
+.container {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.habit-description {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background-color: #e8daf6;
+  background-image: radial-gradient(#764ba2 1px, transparent 1px);
+  background-size: 20px 20px;
+}

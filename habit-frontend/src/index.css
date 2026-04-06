@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #f5f7fb);
+  margin: 0;
+}
+
+/* CENTER EVERYTHING */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.auth-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 320px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.4s ease-in;
+}
+
+/* INPUTS */
+.auth-input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: 0.2s;
+}
+
+.auth-input:focus {
+  outline: none;
+  border: 1px solid #4f46e5;
+  box-shadow: 0 0 5px rgba(79, 70, 229, 0.4);
+}
+
+/* BUTTON */
+.auth-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-btn:hover {
+  background: #4338ca;
+  transform: scale(1.03);
+}
+
+/* TOGGLE TEXT */
+.auth-toggle {
+  margin-top: 15px;
+  color: #4f46e5;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.auth-toggle:hover {
+  text-decoration: underline;
+}
+
+/* CALENDAR (keep existing styles) */
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.react-calendar {
+  width: 400px;
+  max-width: 90%;
+  font-size: 18px;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.react-calendar__tile {
+  height: 60px;
+}
+
+/* FIX DATE VISIBILITY */
+.react-calendar__tile {
+  color: black;
+}
+
+/* COLORS */
+.green {
+  background-color: #4caf50 !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+.yellow {
+  background-color: #ffc107 !important;
+  color: black !important;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: #f44336 !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-container {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #e8daf6, #764ba2);
+}
+
+.app-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-family: 'Dancing Script', cursive;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
