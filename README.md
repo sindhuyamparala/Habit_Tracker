@@ -1,10 +1,34 @@
 # Habit Tracker App
 
-## Frontend
-React app in /habit-frontend
+A full-stack Habit Tracking Web Application built using Spring Boot + React that helps users build consistency by tracking daily habits, monitoring streaks, and analyzing progress.
 
-## Backend
-Spring Boot app in /habittracker
+## Features
+User Registration & Login (JWT Authentication)
+Add and Delete Habits
+Habit Tracking
+Monthly Streak Analysis
+Clean & Responsive UI
+
+## Tech Stack
+Frontend
+React.js
+Axios
+CSS
+Backend
+Spring Boot
+JWT Authentication
+REST APIs
+Database
+MySQL
+
+## 📂 Project Structure
+Habit-Tracker/
+│
+├── habit-frontend/    # React Frontend
+│
+├── habittracker/      # Spring Boot Backend
+│
+└── README.md
 
 ## How to run
 
@@ -15,4 +39,4 @@ mvn spring-boot:run
 ### Frontend
 cd habit-frontend
 npm install
-npm start
+npm run dev
