@@ -58,10 +58,13 @@ public class TrackingController {
     }
 
     @GetMapping("/monthly-streak")
-    public Map<Long, Integer> getMonthlyStreak(
-            @RequestParam int month,
-            @RequestParam int year
-    ) {
-        return service.getMonthlyLongestStreak(month, year);
-    }
+        public Map<Long, Integer> getMonthlyStreak(
+                @RequestParam int month,
+                @RequestParam int year,
+                Authentication auth
+        ) {
+            Long userId = userService.getUserId(auth.getName());
+
+            return service.getMonthlyLongestStreak(userId, month, year);
+        }
 }

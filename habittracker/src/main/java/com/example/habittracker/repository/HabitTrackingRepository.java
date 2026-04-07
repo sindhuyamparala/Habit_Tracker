@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.habittracker.entity.User;
+
 import com.example.habittracker.entity.Habit;
 import com.example.habittracker.entity.HabitTracking;
+import com.example.habittracker.entity.User;
 
 public interface HabitTrackingRepository extends JpaRepository<HabitTracking, Long> {
 
@@ -29,4 +30,6 @@ public interface HabitTrackingRepository extends JpaRepository<HabitTracking, Lo
     List<HabitTracking> findByHabit_IdAndUserOrderByDateAsc(Long habitId, User user);
 
     List<HabitTracking> findByHabit_IdAndUserAndDateBetweenOrderByDateAsc(Long habitId, User user, LocalDate start, LocalDate end);
+    
+    void deleteByHabit(Habit habit);
 }

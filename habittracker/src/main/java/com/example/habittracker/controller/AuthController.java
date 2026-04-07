@@ -1,18 +1,14 @@
 package com.example.habittracker.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.habittracker.entity.User;
-//import com.example.habittracker.service.AuthService;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.habittracker.repository.UserRepository;
 import com.example.habittracker.security.JwtUtil;
-
 
 import lombok.RequiredArgsConstructor;
 
@@ -44,6 +40,6 @@ public class AuthController {
             throw new RuntimeException("Invalid password");
         }
 
-        return jwtUtil.generateToken(existingUser.getEmail());
+        return jwtUtil.generateToken(existingUser.getEmail(), existingUser.getId());
     }
 }

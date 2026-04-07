@@ -1,11 +1,19 @@
 package com.example.habittracker.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.Comparator;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.example.habittracker.dto.MonthlyResponse;
 import com.example.habittracker.entity.Habit;
 import com.example.habittracker.entity.HabitTracking;
 import com.example.habittracker.entity.User;
@@ -15,14 +23,6 @@ import com.example.habittracker.repository.UserRepository;
 import com.example.habittracker.security.SecurityUtil;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.stream.Collectors;
-import com.example.habittracker.dto.MonthlyResponse;
-import java.util.Optional;
-import org.springframework.security.core.Authentication;
-import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
@@ -118,43 +118,43 @@ public class TrackingService {
         return result;
     }
 
-    public Map<Long, Integer> getMonthlyLongestStreak(int month, int year) {
-
-        String email = SecurityUtil.getCurrentUserEmail();
-
-        User user = userRepository.findByEmail(email)
-                .orElseThrow();
+    public Map<Long, Integer> getMonthlyLongestStreak(Long userId, int month, int year) {
 
         LocalDate start = LocalDate.of(year, month, 1);
         LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
 
-        List<HabitTracking> data = trackingRepo
-                .findByHabitUserIdAndDateBetween(user.getId(), start, end);
+        List<HabitTracking> records =
+                trackingRepo.findByHabitUserIdAndDateBetween(userId, start, end);
 
-        Map<Long, List<HabitTracking>> groupedByHabit =
-                data.stream().collect(Collectors.groupingBy(t -> t.getHabit().getId()));
+        Map<Long, List<HabitTracking>> grouped = new HashMap<>();
+
+        for (HabitTracking ht : records) {
+            Long habitId = ht.getHabit().getId();
+            grouped.computeIfAbsent(habitId, k -> new ArrayList<>()).add(ht);
+        }
 
         Map<Long, Integer> result = new HashMap<>();
 
-        for (Map.Entry<Long, List<HabitTracking>> entry : groupedByHabit.entrySet()) {
+        for (Long habitId : grouped.keySet()) {
 
-            int longest = 0;
-            int temp = 0;
+            List<HabitTracking> list = grouped.get(habitId);
 
-            List<HabitTracking> sorted = entry.getValue().stream()
-                    .sorted((a, b) -> a.getDate().compareTo(b.getDate()))
-                    .toList();
+            list.sort(Comparator.comparing(HabitTracking::getDate));
 
-            for (HabitTracking ht : sorted) {
-                if ("DONE".equals(ht.getStatus())) {
-                    temp++;
-                    longest = Math.max(longest, temp);
-                } else {
-                    temp = 0;
+            int maxStreak = 0;
+            int currentStreak = 0;
+
+            for (HabitTracking ht : list) {
+
+                if (ht.getStatus() != null && ht.getStatus().equalsIgnoreCase("DONE")) {
+                    currentStreak++;
+                    maxStreak = Math.max(maxStreak, currentStreak);
+                } else{
+                    currentStreak = 0;
                 }
             }
 
-            result.put(entry.getKey(), longest);
+            result.put(habitId, maxStreak);
         }
 
         return result;

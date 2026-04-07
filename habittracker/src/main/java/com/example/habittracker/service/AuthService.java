@@ -21,16 +21,18 @@ public class AuthService {
     public String register(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         repo.save(user);
-        return jwtUtil.generateToken(user.getEmail());
+
+        return jwtUtil.generateToken(user.getEmail(), user.getId());
     }
 
     public String login(String email, String password) {
-        User user = repo.findByEmail(email).orElseThrow();
+        User user = repo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!encoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return jwtUtil.generateToken(email);
+        return jwtUtil.generateToken(user.getEmail(), user.getId());
     }
 }

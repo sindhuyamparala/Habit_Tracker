@@ -36,5 +36,4 @@ public class HabitController {
     public void delete(@PathVariable Long id) {
         service.deleteHabit(id);
     }
-
 }
