@@ -1,27 +1,34 @@
 package com.example.habittracker.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class CorsConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-
         CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://habit-frontend-68yz5kvm3-sindhuyamparalas-projects.vercel.app"
+        ));
 
-        config.addAllowedOrigin("http://localhost:5173");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.setAllowedHeaders(List.of("*"));
+
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
 
         source.registerCorsConfiguration("/**", config);
-
         return source;
     }
 }

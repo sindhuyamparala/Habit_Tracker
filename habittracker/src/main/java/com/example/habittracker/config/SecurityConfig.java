@@ -14,8 +14,6 @@ import com.example.habittracker.security.CustomUserDetailsService;
 import com.example.habittracker.security.JwtFilter;
 import com.example.habittracker.security.JwtUtil;
 
-//import lombok.RequiredArgsConstructor;
-
 @Configuration
 public class SecurityConfig {
 
@@ -42,13 +40,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+            .cors(cors -> {})
+            
             .csrf(csrf -> csrf.disable())
+
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/track/**").permitAll()
                 .requestMatchers("/habits/**").authenticated()
+                
+                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                
                 .anyRequest().authenticated()
             )
+
             .addFilterBefore(jwtFilter(),
                 UsernamePasswordAuthenticationFilter.class);
 
